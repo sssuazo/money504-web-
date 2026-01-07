@@ -4,33 +4,189 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Noticias | Money 504</title>
+    
     <style>
-        body { background: #0a0a0a; color: #ddd; font-family: serif; padding: 20px; }
-        .header { border-bottom: 2px double #333; text-align: center; margin-bottom: 20px; }
-        h1 { color: white; margin: 0; font-size: 2rem; }
-        .date { color: #d4af37; font-size: 0.8rem; text-transform: uppercase; }
-        .news-item { margin-bottom: 30px; border-bottom: 1px solid #222; padding-bottom: 20px; }
-        .title { font-size: 1.2rem; color: #fff; font-weight: bold; margin-bottom: 5px; }
-        .summary { color: #999; font-family: sans-serif; font-size: 0.9rem; }
-        .back-btn { display: block; text-align: center; color: #00f3ff; text-decoration: none; margin-top: 40px; }
+        :root {
+            --neon-blue: #00f3ff;
+            --neon-green: #0aff0a;
+            --hn-blue: #0073cf;
+            --deep-bg: #050505;
+            --glass-bg: rgba(22, 22, 22, 0.9);
+            --border-color: rgba(255, 255, 255, 0.15);
+            --text-gray: #ccc;
+        }
+        body {
+            background-color: var(--deep-bg);
+            background-image: linear-gradient(to bottom, #020202, #0e0e0e);
+            color: white;
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
+            margin: 0; padding: 0;
+            display: flex; flex-direction: column; align-items: center;
+            min-height: 100vh;
+        }
+
+        /* HEADER SIMPLE */
+        .nav-header {
+            width: 100%; padding: 20px 0; text-align: center;
+            background: rgba(0,0,0,0.8); backdrop-filter: blur(10px);
+            position: sticky; top: 0; z-index: 100; border-bottom: 1px solid #222;
+        }
+        .brand { font-weight: 900; font-size: 1.2rem; letter-spacing: -1px; color: white; text-decoration: none; }
+        .brand span { color: var(--neon-blue); }
+        .page-title { font-size: 0.7rem; color: #888; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
+
+        /* CONTENEDOR DE NOTICIAS */
+        .news-container { width: 92%; max-width: 600px; padding: 20px 0; }
+
+        /* ARTÍCULO PRINCIPAL (FEATURED) */
+        .article-card {
+            background: var(--glass-bg); border: 1px solid var(--border-color);
+            border-radius: 15px; overflow: hidden; margin-bottom: 30px;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        /* ETIQUETA DE CATEGORÍA */
+        .category-tag {
+            background: var(--neon-blue); color: black; 
+            font-size: 0.6rem; font-weight: 800; padding: 4px 10px; 
+            text-transform: uppercase; display: inline-block; margin: 20px 0 10px 20px;
+            border-radius: 4px;
+        }
+
+        .headline {
+            font-family: 'Playfair Display', serif; /* Toque elegante tipo periódico */
+            font-size: 1.5rem; margin: 0 20px 15px 20px; line-height: 1.2;
+            color: white; font-weight: 700;
+        }
+
+        .meta-info {
+            font-size: 0.7rem; color: #666; margin: 0 20px 20px 20px;
+            border-bottom: 1px solid #333; padding-bottom: 15px;
+            display: flex; justify-content: space-between;
+        }
+
+        .article-body {
+            padding: 0 20px 20px 20px; color: var(--text-gray);
+            font-size: 0.95rem; line-height: 1.6;
+        }
+
+        /* TABLA DE DATOS */
+        .data-table {
+            width: 100%; border-collapse: collapse; margin: 20px 0;
+            font-size: 0.85rem; border: 1px solid #333;
+        }
+        .data-table th { text-align: left; padding: 10px; background: #111; color: #888; border-bottom: 1px solid #333; }
+        .data-table td { padding: 10px; border-bottom: 1px solid #222; }
+        .highlight-row { background: rgba(0, 243, 255, 0.05); }
+        .trend-bad { color: #ff4444; font-weight: bold; }
+        .trend-neutral { color: #888; }
+
+        /* BLOQUE DE REFLEXIÓN (SOLIDARIDAD) */
+        .community-pulse {
+            background: rgba(255, 255, 255, 0.05);
+            margin: 30px 20px; padding: 20px; border-radius: 10px;
+            border-left: 4px solid var(--neon-green);
+        }
+        .pulse-title { color: var(--neon-green); font-weight: bold; font-size: 0.9rem; margin-bottom: 10px; text-transform: uppercase; }
+        .pulse-text { font-size: 0.9rem; font-style: italic; margin-bottom: 15px; }
+
+        /* BOTÓN COMPARTIR */
+        .share-btn {
+            display: block; width: 100%; padding: 12px;
+            background: #25D366; color: white; text-align: center;
+            text-decoration: none; font-weight: bold; border-radius: 8px;
+            font-size: 0.9rem; transition: transform 0.2s;
+        }
+        .share-btn:active { transform: scale(0.98); }
+
+        /* BOTÓN VOLVER */
+        .back-btn {
+            position: fixed; bottom: 20px; right: 20px;
+            background: var(--neon-blue); color: black; width: 50px; height: 50px;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem; text-decoration: none; box-shadow: 0 5px 20px rgba(0,0,0,0.5);
+            z-index: 200;
+        }
+
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
-    <div class="header">
-        <div class="date">BRIEFING DIARIO</div>
-        <h1>THE 504 TIMES</h1>
+
+    <nav class="nav-header">
+        <a href="index.html" class="brand">MONEY <span>504</span></a>
+        <div class="page-title">Financial Intelligence Unit</div>
+    </nav>
+
+    <div class="news-container">
+        
+        <article class="article-card">
+            <span class="category-tag">MACROECONOMÍA</span>
+            <h1 class="headline">Reforma Fiscal EE.UU 2026: La nueva 'Ley Ómnibus' y el impacto en tus remesas</h1>
+            
+            <div class="meta-info">
+                <span>Por Redacción M504</span>
+                <span>Hace 2 horas</span>
+            </div>
+
+            <div class="article-body">
+                <p><strong>RESUMEN EJECUTIVO:</strong> El Congreso estadounidense ha dado luz verde a un paquete fiscal histórico. Las letras pequeñas incluyen ajustes en las tasas de transferencia internacional que podrían encarecer el envío promedio en un <strong>1.5% a partir de marzo.</strong></p>
+                
+                <p>Para la economía hondureña, esto no es una noticia menor. No se trata de un bloqueo, sino de una fricción transaccional: enviar dinero en efectivo será más costoso.</p>
+
+                <table class="data-table">
+                    <thead>
+                        <tr>
+                            <th>Concepto ($100)</th>
+                            <th style="text-align:right;">Hoy</th>
+                            <th style="text-align:right;">Marzo '26</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Envío Ventanilla</td>
+                            <td style="text-align:right;">$4.50</td>
+                            <td style="text-align:right;" class="trend-bad">$6.50 🔺</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>Envío Digital (App)</td>
+                            <td style="text-align:right;">$2.99</td>
+                            <td style="text-align:right;">$2.99 ➖</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <p><strong>LA LECTURA DE MONEY 504:</strong><br>
+                Nuestros analistas consideran que este movimiento acelerará la "muerte del efectivo". Quien siga enviando por ventanilla física estará pagando un "impuesto a la nostalgia".</p>
+                
+                <p><strong>Recomendación:</strong> Es imperativo migrar a plataformas digitales (Remitly/Wise) antes de marzo.</p>
+            </div>
+
+            <div class="community-pulse">
+                <div class="pulse-title">💬 El Pulso de la Comunidad</div>
+                <div class="pulse-text">
+                    "Muchos compatriotas desconocen este cambio y podrían perder dinero en su próximo envío. La solidaridad catracha también es informarnos."
+                </div>
+                <a href="whatsapp://send?text=Mira esta noticia sobre las remesas, van a subir de precio en marzo: https://money504.com" class="share-btn">
+                    📲 Alertar a la Familia en WhatsApp
+                </a>
+            </div>
+        </article>
+
+
+        <article class="article-card">
+            <span class="category-tag" style="background:var(--neon-green);">TENDENCIAS</span>
+            <h1 class="headline">Turismo Médico: Por qué los catrachos en Miami vuelan a SPS para ir al dentista</h1>
+            
+            <div class="article-body">
+                <p>Un tratamiento de conducto en Florida ronda los $1,200. En San Pedro Sula, con tecnología alemana, cuesta $250. El auge del "Turismo de Salud" está llenando los vuelos de Spirit y American.</p>
+                <p>¿Vale la pena el viaje? Hacemos las cuentas en el próximo reporte.</p>
+            </div>
+        </article>
+
     </div>
 
-    <div class="news-item">
-        <div class="title">📉 El Lempira bajo presión</div>
-        <div class="summary">La demanda de dólares aumenta por importaciones de fin de año. Expertos sugieren enviar remesas hoy.</div>
-    </div>
+    <a href="index.html" class="back-btn">↩</a>
 
-    <div class="news-item">
-        <div class="title">🏦 Nuevas tasas en Cuentas USD</div>
-        <div class="summary">Banco Atlántida y BAC ajustan sus intereses para cuentas de ahorro en moneda extranjera.</div>
-    </div>
-
-    <a href="index.html" class="back-btn">← Volver al Dashboard</a>
 </body>
 </html>
