@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MONEY 504 | Honduras Financial Hub</title>
-    <meta name="description" content="Money 504: The Honduras Financial Hub. Tasa de cambio Lempira/Dólar en vivo, remesas sin comisión y noticias financieras.">
+    <meta name="description" content="Money 504: The Honduras Financial Hub. Tasa de cambio Lempira/Dólar en vivo, remesas sin comisión, citas consulares y noticias financieras.">
     
     <style>
         :root {
             --neon-blue: #00f3ff;
             --neon-green: #0aff0a;
             --hn-blue: #0073cf;
-            --news-purple: #9d00ff; /* Color para Noticias */
+            --news-purple: #9d00ff;
+            --gold: #d4af37; /* Color Dorado Consulados */
             --deep-bg: #050505;
             --glass-bg: rgba(22, 22, 22, 0.8);
             --border-color: rgba(255, 255, 255, 0.1);
@@ -78,17 +79,19 @@
         /* Colores Específicos */
         .btn-remitly { border-color: rgba(10, 255, 10, 0.2); }
         .btn-hn { border-color: rgba(0, 115, 207, 0.4); } 
-        .btn-news { border-color: rgba(157, 0, 255, 0.4); } /* Borde Púrpura */
+        .btn-news { border-color: rgba(157, 0, 255, 0.4); }
+        .btn-passport { border-color: rgba(212, 175, 55, 0.4); } /* Dorado */
         .btn-live { background: linear-gradient(90deg, #990000 0%, #D93025 100%); border: none; }
         
         .tag { font-size: 0.65rem; padding: 5px 10px; border-radius: 8px; font-weight: 800; text-transform: uppercase; }
         .tag-green { background: var(--neon-green); color: black; }
         .tag-blue { background: var(--hn-blue); color: white; }
         .tag-purple { background: var(--news-purple); color: white; }
+        .tag-gold { background: var(--gold); color: black; }
         .tag-white { background: white; color: black; }
         .tag-live { background: rgba(0,0,0,0.3); color: white; }
 
-        /* FOOTER SOCIAL */
+        /* FOOTER SOCIAL & LEGAL */
         footer { 
             margin-top: auto; padding: 30px 20px; color: #666; font-size: 0.75rem; text-align: center; 
             background: linear-gradient(to top, #000, transparent); width: 100%; box-sizing: border-box;
@@ -96,6 +99,9 @@
         .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #222; }
         .social-icon { width: 24px; height: 24px; fill: #666; transition: all 0.3s ease; }
         .social-icon:hover { fill: var(--neon-blue); transform: scale(1.2); filter: drop-shadow(0 0 8px var(--neon-blue)); }
+        
+        .legal-link { color: #666; text-decoration: none; font-size: 0.7rem; margin-top: 5px; display:inline-block; border-bottom: 1px dotted #444; }
+        .legal-link:hover { color: var(--neon-blue); border-color: var(--neon-blue); }
     </style>
 </head>
 <body>
@@ -148,12 +154,17 @@
         </a>
 
         <a href="LINK_BANCO_LOCAL" class="link-btn btn-hn">
-            <div><span class="btn-title">🇭🇳 Cuenta de Remesas (HNL)</span><span class="btn-subtitle">Banca local directa</span></div>
+            <div><span class="btn-title">🇭🇳 Cuenta Remesas (HNL)</span><span class="btn-subtitle">Banca local directa</span></div>
             <span class="tag tag-blue">LOCAL</span>
         </a>
 
-        <a href="LINK_A_TUS_NOTICIAS" class="link-btn btn-news">
-            <div><span class="btn-title">📰 Últimas Noticias Financieras</span><span class="btn-subtitle">Lo que afecta a tu bolsillo</span></div>
+        <a href="consulados.html" class="link-btn btn-passport">
+            <div><span class="btn-title">🏛️ Embajadas y Citas</span><span class="btn-subtitle">Pasaportes y trámites</span></div>
+            <span class="tag tag-gold">OFICIAL</span>
+        </a>
+
+        <a href="LINK_A_NOTICIAS" class="link-btn btn-news">
+            <div><span class="btn-title">📰 Noticias Financieras</span><span class="btn-subtitle">Economía al día</span></div>
             <span class="tag tag-purple">AL DÍA</span>
         </a>
 
@@ -171,7 +182,9 @@
             <a href="TU_INSTAGRAM_LINK"><svg class="social-icon" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg></a>
             <a href="TU_X_LINK"><svg class="social-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
         </div>
-        <p>© 2026 Money 504 Media. Honduras Financial Hub.</p>
+        
+        <p style="margin-bottom: 8px;">© 2026 Money 504 Media. Honduras Financial Hub.</p>
+        <a href="legal.html" class="legal-link">Política de Privacidad y Cookies</a>
     </footer>
 
     <script>
