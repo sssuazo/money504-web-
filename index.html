@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MONEY 504 | Honduras Financial Hub</title>
-    <meta name="description" content="Money 504: The Honduras Financial Hub. Tasa de cambio Lempira/Dólar en vivo, remesas sin comisión, citas consulares y noticias financieras.">
+    <meta name="description" content="Money 504: The Honduras Financial Hub. Tasa de cambio, precios del combustible, clima y noticias financieras.">
     
     <style>
         :root {
@@ -30,7 +30,7 @@
             padding-top: 40px; /* Espacio para el Ticker */
         }
 
-        /* --- NUEVO: TICKER BLOOMBERG STYLE --- */
+        /* --- TICKER BLOOMBERG STYLE (CLIMA + PRECIOS) --- */
         .ticker-wrap {
             position: fixed; top: 0; width: 100%; height: 36px;
             background: #000; border-bottom: 1px solid #222;
@@ -45,11 +45,12 @@
         .blink { animation: blinker 1.5s linear infinite; color: red; margin-right: 5px; font-size: 0.5rem; }
         @keyframes blinker { 50% { opacity: 0; } }
 
-        .ticker { display: inline-block; animation: marquee 25s linear infinite; padding-left: 100%; }
-        .ticker-item { display: inline-block; padding: 0 20px; font-size: 0.8rem; color: #ccc; }
+        .ticker { display: inline-block; animation: marquee 35s linear infinite; padding-left: 100%; }
+        .ticker-item { display: inline-block; padding: 0 15px; font-size: 0.8rem; color: #ccc; border-right: 1px solid #222; }
         .ticker-val { color: white; font-weight: bold; margin-left: 5px; }
         .up { color: var(--neon-green); }
         .down { color: #ff4444; }
+        .weather-icon { font-size: 0.9rem; margin-right: 3px; }
 
         @keyframes marquee { 0% { transform: translate3d(0, 0, 0); } 100% { transform: translate3d(-100%, 0, 0); } }
         /* ------------------------------------ */
@@ -132,13 +133,16 @@
         <div class="ticker-live-icon"><span class="blink">●</span> LIVE</div>
         <div class="ticker">
             <div class="ticker-item">USD/HNL: <span class="ticker-val">26.34</span> <span class="up">▲</span></div>
-            <div class="ticker-item">EUR/HNL: <span class="ticker-val">30.12</span> <span class="down">▼</span></div>
-            <div class="ticker-item">Gasolina Regular: <span class="ticker-val">L 105.40</span> <span class="up">▲</span></div>
-            <div class="ticker-item">Café (Saco): <span class="ticker-val">$192.50</span> <span class="up">▲</span></div>
+            <div class="ticker-item"><span class="weather-icon">☀️</span> Tegu: <span class="ticker-val">28°C</span></div>
+            <div class="ticker-item">Gasolina Sup (FM): <span class="ticker-val">L 105.40</span> <span class="up">▲</span></div>
+            <div class="ticker-item"><span class="weather-icon">🌦️</span> SPS: <span class="ticker-val">32°C</span></div>
+            <div class="ticker-item">Café Oro (SB): <span class="ticker-val">$192.50</span> <span class="up">▲</span></div>
+            <div class="ticker-item"><span class="weather-icon">🌊</span> Roatán: <span class="ticker-val">29°C</span></div>
+            <div class="ticker-item">Gasolina Reg (AT): <span class="ticker-val">L 98.20</span> <span class="down">▼</span></div>
             <div class="ticker-item">Bitcoin: <span class="ticker-val">$98,400</span> <span class="up">▲</span></div>
-            <div class="ticker-item">Remesas (Mes): <span class="ticker-val">$850M</span> <span class="up">▲</span></div>
+            
             <div class="ticker-item">USD/HNL: <span class="ticker-val">26.34</span> <span class="up">▲</span></div>
-            <div class="ticker-item">EUR/HNL: <span class="ticker-val">30.12</span> <span class="down">▼</span></div>
+            <div class="ticker-item"><span class="weather-icon">☀️</span> Tegu: <span class="ticker-val">28°C</span></div>
         </div>
     </div>
 
