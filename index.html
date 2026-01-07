@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MONEY 504 | Honduras Financial Hub</title>
-    <meta name="description" content="Money 504: The Honduras Financial Hub. Tasa de cambio, precios del combustible, clima y noticias financieras.">
+    <meta name="description" content="Money 504: El Hub Financiero de Honduras. Tasa de cambio, precios del combustible y monitoreo nacional de las 18 cabeceras departamentales.">
     
     <style>
         :root {
@@ -30,7 +30,7 @@
             padding-top: 40px; /* Espacio para el Ticker */
         }
 
-        /* --- TICKER BLOOMBERG STYLE (CLIMA + PRECIOS) --- */
+        /* --- TICKER BLOOMBERG STYLE (EDICIÓN NACIONAL) --- */
         .ticker-wrap {
             position: fixed; top: 0; width: 100%; height: 36px;
             background: #000; border-bottom: 1px solid #222;
@@ -45,7 +45,8 @@
         .blink { animation: blinker 1.5s linear infinite; color: red; margin-right: 5px; font-size: 0.5rem; }
         @keyframes blinker { 50% { opacity: 0; } }
 
-        .ticker { display: inline-block; animation: marquee 35s linear infinite; padding-left: 100%; }
+        /* Aumentado a 90s para leer las 18 ciudades cómodamente */
+        .ticker { display: inline-block; animation: marquee 90s linear infinite; padding-left: 100%; }
         .ticker-item { display: inline-block; padding: 0 15px; font-size: 0.8rem; color: #ccc; border-right: 1px solid #222; }
         .ticker-val { color: white; font-weight: bold; margin-left: 5px; }
         .up { color: var(--neon-green); }
@@ -133,16 +134,36 @@
         <div class="ticker-live-icon"><span class="blink">●</span> LIVE</div>
         <div class="ticker">
             <div class="ticker-item">USD/HNL: <span class="ticker-val">26.34</span> <span class="up">▲</span></div>
-            <div class="ticker-item"><span class="weather-icon">☀️</span> Tegu: <span class="ticker-val">28°C</span></div>
+            <div class="ticker-item">EUR/HNL: <span class="ticker-val">30.12</span> <span class="down">▼</span></div>
             <div class="ticker-item">Gasolina Sup (FM): <span class="ticker-val">L 105.40</span> <span class="up">▲</span></div>
-            <div class="ticker-item"><span class="weather-icon">🌦️</span> SPS: <span class="ticker-val">32°C</span></div>
+
+            <div class="ticker-item"><span class="weather-icon">☀️</span> Tegucigalpa: <span class="ticker-val">28°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">🌤️</span> Comayagua: <span class="ticker-val">30°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">🔥</span> Choluteca: <span class="ticker-val">38°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">🔥</span> Nacaome: <span class="ticker-val">37°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">🌤️</span> La Paz: <span class="ticker-val">27°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">⛅</span> Yuscarán: <span class="ticker-val">25°C</span></div>
+
+            <div class="ticker-item"><span class="weather-icon">🌧️</span> San Pedro Sula: <span class="ticker-val">33°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">🌴</span> La Ceiba: <span class="ticker-val">31°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">🌊</span> Trujillo: <span class="ticker-val">29°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">🏝️</span> Roatán: <span class="ticker-val">29°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">🌦️</span> Yoro: <span class="ticker-val">29°C</span></div>
+
             <div class="ticker-item">Café Oro (SB): <span class="ticker-val">$192.50</span> <span class="up">▲</span></div>
-            <div class="ticker-item"><span class="weather-icon">🌊</span> Roatán: <span class="ticker-val">29°C</span></div>
-            <div class="ticker-item">Gasolina Reg (AT): <span class="ticker-val">L 98.20</span> <span class="down">▼</span></div>
+
+            <div class="ticker-item"><span class="weather-icon">⛰️</span> Sta. Rosa Copán: <span class="ticker-val">26°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">🥶</span> La Esperanza: <span class="ticker-val">18°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">☕</span> Sta. Bárbara: <span class="ticker-val">31°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">⛰️</span> Gracias: <span class="ticker-val">26°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">⛅</span> Ocotepeque: <span class="ticker-val">27°C</span></div>
+
+            <div class="ticker-item"><span class="weather-icon">🤠</span> Juticalpa: <span class="ticker-val">31°C</span></div>
+            <div class="ticker-item"><span class="weather-icon">🛶</span> Pto. Lempira: <span class="ticker-val">30°C</span></div>
+
             <div class="ticker-item">Bitcoin: <span class="ticker-val">$98,400</span> <span class="up">▲</span></div>
             
             <div class="ticker-item">USD/HNL: <span class="ticker-val">26.34</span> <span class="up">▲</span></div>
-            <div class="ticker-item"><span class="weather-icon">☀️</span> Tegu: <span class="ticker-val">28°C</span></div>
         </div>
     </div>
 
