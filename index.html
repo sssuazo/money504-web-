@@ -8,103 +8,127 @@
         :root {
             --neon-blue: #00f3ff;
             --neon-green: #0aff0a;
-            --dark-bg: #050505;
-            --card-bg: rgba(20, 20, 20, 0.6);
-            --glass: blur(10px);
+            --deep-bg: #050505;
+            --glass-bg: rgba(22, 22, 22, 0.7);
+            --border-color: rgba(255, 255, 255, 0.1);
         }
         body {
-            background-color: var(--dark-bg);
-            /* Fondo sutil degradado para que no sea negro plano */
-            background-image: radial-gradient(circle at 50% 0%, #1a1a2e 0%, #000000 70%);
+            background-color: var(--deep-bg);
+            /* FONDO MEJORADO: Efecto de luz "Aurora" en la parte superior */
+            background-image: 
+                radial-gradient(circle at 50% -20%, rgba(0, 243, 255, 0.15) 0%, rgba(0,0,0,0) 50%),
+                linear-gradient(to bottom, #020202, #0a0a0a);
             color: white;
-            font-family: 'Segoe UI', Roboto, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, sans-serif;
             margin: 0; padding: 0;
             display: flex; flex-direction: column; align-items: center;
             min-height: 100vh;
         }
 
-        /* HEADER */
-        header { margin-top: 50px; text-align: center; padding: 0 20px; margin-bottom: 20px; }
-        h1 {
-            font-size: 3.5rem; margin: 0; font-weight: 900; letter-spacing: -3px;
-            /* Gradiente de Texto: De Blanco a Azul Neón */
-            background: linear-gradient(90deg, #ffffff, var(--neon-blue));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            text-shadow: 0 0 30px rgba(0, 243, 255, 0.2);
+        /* LOGOTIPO MEJORADO */
+        header { margin-top: 60px; text-align: center; padding: 0 20px; position: relative; }
+        .brand-eyebrow { 
+            color: var(--neon-blue); font-size: 0.75rem; letter-spacing: 4px; 
+            text-transform: uppercase; font-weight: 700; margin-bottom: 5px;
+            opacity: 0.9;
         }
-        .subtitle { color: #888; font-size: 0.8rem; letter-spacing: 4px; text-transform: uppercase; margin-top: 0px; font-weight: 600; }
+        h1 {
+            font-size: 4rem; margin: 0; font-weight: 900; letter-spacing: -2px; line-height: 1;
+            background: linear-gradient(180deg, #ffffff, #a5a5a5); /* Metálico limpio */
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+        .h1-highlight {
+            color: var(--neon-blue); -webkit-text-fill-color: var(--neon-blue);
+            text-shadow: 0 0 40px rgba(0, 243, 255, 0.4);
+        }
 
-        /* RELOJES (Nuevo Orden) */
+        /* RELOJES FLOTANTES (GLASSMORPHISM) */
         .clocks-container { 
-            display: flex; gap: 15px; margin: 20px 0; justify-content: center; align-items: center; 
-            flex-wrap: wrap; padding: 0 10px; 
+            display: flex; gap: 12px; margin: 40px 0 20px; 
+            justify-content: center; align-items: center; flex-wrap: wrap; 
         }
         .clock-card {
-            background: var(--card-bg); border: 1px solid #333;
-            padding: 10px 20px; border-radius: 16px; text-align: center; min-width: 80px;
-            backdrop-filter: var(--glass);
-            transition: transform 0.2s;
+            background: var(--glass-bg); 
+            border: 1px solid var(--border-color);
+            padding: 12px 20px; border-radius: 16px; text-align: center; min-width: 90px;
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: transform 0.2s, border-color 0.2s;
         }
-        
-        /* El Reloj de Honduras (Destacado) */
+        .clock-card:hover { transform: translateY(-3px); border-color: rgba(255,255,255,0.3); }
+
+        /* El Reloj Héroe (Honduras) */
         .clock-card.hero {
-            border: 1px solid var(--neon-blue);
-            transform: scale(1.15); /* Más grande */
-            box-shadow: 0 0 25px rgba(0, 243, 255, 0.15);
-            z-index: 10;
+            border: 1px solid rgba(0, 243, 255, 0.3);
+            background: linear-gradient(145deg, rgba(0, 243, 255, 0.05), rgba(0,0,0,0.4));
+            transform: scale(1.1);
         }
-        
-        .city-name { font-size: 0.65rem; color: #aaa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 2px;}
-        .time-display { font-size: 1.3rem; font-weight: 700; color: white; font-variant-numeric: tabular-nums; }
-        .hero .time-display { font-size: 1.5rem; color: var(--neon-blue); }
+        .city-name { font-size: 0.65rem; color: #888; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; margin-bottom: 4px; }
+        .time-display { font-size: 1.2rem; font-weight: 700; color: #eee; font-variant-numeric: tabular-nums; }
+        .hero .time-display { color: var(--neon-blue); text-shadow: 0 0 10px rgba(0, 243, 255, 0.3); }
 
-        /* WIDGET DE PRECIOS (TradingView) */
+        /* WIDGET MEJORADO (El Protagonista) */
         .market-widget {
-            width: 90%; max-width: 500px; height: 140px;
-            margin: 20px auto;
-            border-radius: 16px;
+            width: 95%; max-width: 550px; height: 130px;
+            margin: 10px auto 40px;
+            border-radius: 20px;
             overflow: hidden;
-            border: 1px solid #333;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--border-color);
+            /* Glow suave detrás del widget */
+            box-shadow: 0 0 50px rgba(0, 243, 255, 0.05); 
+            background: rgba(10, 10, 10, 0.5);
         }
 
-        /* BOTONES PRINCIPALES */
-        .links-container { width: 90%; max-width: 400px; display: flex; flex-direction: column; gap: 12px; margin: 30px 0; }
+        /* BOTONES DE ACCIÓN (High Conversion) */
+        .links-container { width: 90%; max-width: 420px; display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
         .link-btn {
-            background: var(--card-bg); border: 1px solid #333; padding: 16px 20px; border-radius: 50px;
-            text-decoration: none; color: white; font-weight: 600; display: flex; justify-content: space-between; align-items: center;
-            transition: all 0.3s ease; backdrop-filter: var(--glass);
+            position: relative;
+            background: var(--glass-bg); border: 1px solid var(--border-color); 
+            padding: 18px 24px; border-radius: 16px;
+            text-decoration: none; color: white; font-weight: 600; 
+            display: flex; justify-content: space-between; align-items: center;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+            overflow: hidden;
         }
-        .link-btn:hover { border-color: var(--neon-blue); transform: translateY(-2px); }
         
-        .tag { font-size: 0.6rem; padding: 4px 8px; border-radius: 8px; font-weight: 800; text-transform: uppercase; }
-        .tag-green { background: var(--neon-green); color: black; }
+        /* Efecto Hover Avanzado */
+        .link-btn::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            transform: translateX(-100%); transition: 0.5s;
+        }
+        .link-btn:hover::before { transform: translateX(100%); }
+        .link-btn:hover { border-color: var(--neon-blue); transform: scale(1.02); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        .link-btn:active { transform: scale(0.98); }
+
+        /* Estilos específicos de botones */
+        .btn-remitly { border-color: rgba(10, 255, 10, 0.3); }
+        .btn-live { background: linear-gradient(90deg, #D93025 0%, #a00 100%); border: none; }
         
-        /* FOOTER */
-        footer { margin-top: auto; padding: 30px; color: #444; font-size: 0.7rem; text-align: center; }
-        a { color: #555; text-decoration: none; }
+        .tag { font-size: 0.65rem; padding: 5px 10px; border-radius: 8px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
+        .tag-green { background: var(--neon-green); color: black; box-shadow: 0 0 10px rgba(10, 255, 10, 0.4); }
+        .tag-white { background: white; color: black; }
+        .tag-live { background: rgba(0,0,0,0.3); color: white; border: 1px solid rgba(255,255,255,0.3); }
+
+        footer { color: #444; font-size: 0.75rem; text-align: center; margin-bottom: 20px; }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="subtitle">UtilityOS Financial</div>
-        <h1>MONEY 504</h1>
+        <div class="brand-eyebrow">UtilityOS Financial</div>
+        <h1>MONEY <span class="h1-highlight">504</span></h1>
     </header>
 
     <div class="clocks-container">
-        
         <div class="clock-card">
             <div class="city-name">🇺🇸 Miami / NY</div>
             <div class="time-display" id="time-us">--:--</div>
         </div>
-
         <div class="clock-card hero">
-            <div class="city-name">🇭🇳 Tegu / SPS</div>
+            <div class="city-name">🇭🇳 Tegucigalpa</div>
             <div class="time-display" id="time-hn">--:--</div>
         </div>
-
         <div class="clock-card">
             <div class="city-name">🇪🇸 Madrid</div>
             <div class="time-display" id="time-es">--:--</div>
@@ -119,48 +143,54 @@
             "symbols": [
                 {
                 "proName": "FX_IDC:USDHNL",
-                "title": "Dólar a Lempira"
+                "title": "🇺🇸 USD a HNL (Precio Hoy)"
                 },
                 {
                 "proName": "FX_IDC:EURHNL",
-                "title": "Euro a Lempira"
+                "title": "🇪🇺 EUR a HNL (Precio Hoy)"
                 }
             ],
             "colorTheme": "dark",
             "isTransparent": true,
-            "showSymbolLogo": true,
+            "showSymbolLogo": false,
             "locale": "es"
             }
             </script>
         </div>
-        </div>
+    </div>
 
     <div class="links-container">
-        <a href="TU_LINK_REMITLY" class="link-btn" style="border-color: var(--neon-green);">
-            <span>📲 Enviar Dinero (Sin Comisión)</span>
-            <span class="tag tag-green">MEJOR PRECIO</span>
+        <a href="TU_LINK_REMITLY" class="link-btn btn-remitly">
+            <div style="display:flex; flex-direction:column; gap:2px;">
+                <span style="font-size: 1rem;">📲 Enviar Dinero</span>
+                <span style="font-size: 0.75rem; color:#aaa; font-weight:400;">Cero comisiones primer envío</span>
+            </div>
+            <span class="tag tag-green">MEJOR TASA</span>
         </a>
 
         <a href="TU_LINK_WISE" class="link-btn">
-            <span>🚀 Cuenta Dólar Internacional</span>
-            <span class="tag" style="background:white; color:black">WISE</span>
+            <div style="display:flex; flex-direction:column; gap:2px;">
+                <span style="font-size: 1rem;">🚀 Cuenta en Dólares</span>
+                <span style="font-size: 0.75rem; color:#aaa; font-weight:400;">Datos bancarios de USA</span>
+            </div>
+            <span class="tag tag-white">WISE</span>
         </a>
 
-        <a href="TU_CANAL_YOUTUBE" class="link-btn" style="background: #D93025; border:none;">
-            <span>🔴 Ver Análisis en Vivo</span>
-            <span class="tag" style="color:white">LIVE</span>
+        <a href="TU_CANAL_YOUTUBE" class="link-btn btn-live">
+            <span style="font-size: 1rem;">🔴 Análisis en Vivo</span>
+            <span class="tag tag-live">AHORA</span>
         </a>
     </div>
 
     <footer>
         © 2026 Money 504 Media.<br>
-        Datos de mercado por TradingView.
+        Datos de mercado en tiempo real.
     </footer>
 
     <script>
         function updateClocks() {
             const now = new Date();
-            const opts = { hour: '2-digit', minute: '2-digit', hour12: true }; // Formato AM/PM limpio
+            const opts = { hour: '2-digit', minute: '2-digit', hour12: true };
             
             document.getElementById('time-hn').innerText = now.toLocaleTimeString('es-HN', { ...opts, timeZone: 'America/Tegucigalpa' });
             document.getElementById('time-es').innerText = now.toLocaleTimeString('es-ES', { ...opts, timeZone: 'Europe/Madrid' });
