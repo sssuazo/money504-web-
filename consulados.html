@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Consulados y Citas | Money 504</title>
+    <style>
+        :root {
+            --neon-blue: #00f3ff;
+            --gold: #d4af37;
+            --deep-bg: #050505;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+        body {
+            background: var(--deep-bg);
+            color: white;
+            font-family: 'Segoe UI', sans-serif;
+            margin: 0; padding: 20px;
+            display: flex; flex-direction: column; align-items: center;
+        }
+        .header { text-align: center; margin-bottom: 30px; }
+        .header h1 { color: var(--neon-blue); margin-bottom: 5px; }
+        .header p { color: #888; font-size: 0.9rem; }
+
+        /* BUSCADOR SIMULADO */
+        .search-box {
+            width: 100%; max-width: 500px;
+            background: var(--glass);
+            border: 1px solid #333;
+            padding: 15px; border-radius: 12px;
+            margin-bottom: 30px; text-align: center;
+        }
+
+        /* GRID DE CONSULADOS */
+        .consulado-grid {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px; width: 100%; max-width: 900px;
+        }
+        .card {
+            background: var(--glass); border: 1px solid #222;
+            padding: 20px; border-radius: 15px;
+            transition: 0.3s;
+        }
+        .card:hover { border-color: var(--gold); background: rgba(212, 175, 55, 0.05); }
+        .city { font-size: 1.2rem; font-weight: bold; color: var(--gold); margin-bottom: 10px; }
+        .info { font-size: 0.85rem; color: #ccc; margin-bottom: 15px; line-height: 1.4; }
+        
+        .btn-cita {
+            display: inline-block; width: 100%; text-align: center;
+            background: #1a1a1a; color: white; padding: 10px;
+            text-decoration: none; border-radius: 8px; font-weight: bold;
+            border: 1px solid #444; font-size: 0.9rem;
+        }
+        .btn-cita:hover { background: white; color: black; }
+
+        .back-home { margin-top: 40px; color: var(--neon-blue); text-decoration: none; font-size: 0.9rem; }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>Red Consular HN</h1>
+        <p>Gestión de pasaportes, DNI y trámites legales</p>
+    </div>
+
+    <div class="search-box">
+        <span style="color:var(--gold)">📍 Tip de Oro:</span> Las citas se habilitan los primeros días de cada mes. ¡Sé el primero!
+    </div>
+
+    <div class="consulado-grid">
+        <div class="card">
+            <div class="city">🇺🇸 Miami, FL</div>
+            <div class="info">
+                777 SW 37th Ave, Suite 600, Miami, FL 33134<br>
+                Tel: +1 (305) 269-3131
+            </div>
+            <a href="https://citaconsular.sreci.gob.hn/" target="_blank" class="btn-cita">AGENDAR CITA ONLINE</a>
+        </div>
+
+        <div class="card">
+            <div class="city">🇪🇸 Madrid, España</div>
+            <div class="info">
+                Calle de la Princesa, 5, 28008 Madrid<br>
+                Tel: +34 915 79 14 25
+            </div>
+            <a href="https://citaconsular.sreci.gob.hn/" target="_blank" class="btn-cita">AGENDAR CITA ONLINE</a>
+        </div>
+
+        <div class="card">
+            <div class="city">🇺🇸 New York, NY</div>
+            <div class="info">
+                255 West 36th St, New York, NY 10018<br>
+                Tel: +1 (212) 269-3611
+            </div>
+            <a href="https://citaconsular.sreci.gob.hn/" target="_blank" class="btn-cita">AGENDAR CITA ONLINE</a>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-home">← Volver al Hub Financiero</a>
+
+</body>
+</html>
