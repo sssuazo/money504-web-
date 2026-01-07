@@ -1,22 +1,23 @@
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MONEY 504 | Dashboard Financiero</title>
+    <title>MONEY 504 | Honduras Financial Hub</title>
+    <meta name="description" content="Money 504: The Honduras Financial Hub. Tasa de cambio Lempira/Dólar en vivo, remesas sin comisión y noticias financieras.">
+    
     <style>
         :root {
             --neon-blue: #00f3ff;
             --neon-green: #0aff0a;
-            --hn-blue: #0073cf; /* Azul Honduras para el nuevo botón */
+            --hn-blue: #0073cf;
+            --news-purple: #9d00ff; /* Color para Noticias */
             --deep-bg: #050505;
             --glass-bg: rgba(22, 22, 22, 0.8);
             --border-color: rgba(255, 255, 255, 0.1);
         }
         body {
             background-color: var(--deep-bg);
-            /* Fondo Aurora mejorado */
             background-image: 
                 radial-gradient(circle at 50% -10%, rgba(0, 243, 255, 0.2) 0%, rgba(0,0,0,0) 60%),
                 linear-gradient(to bottom, #020202, #0e0e0e);
@@ -37,7 +38,7 @@
         }
         .h1-highlight { color: var(--neon-blue); -webkit-text-fill-color: var(--neon-blue); text-shadow: 0 0 30px rgba(0, 243, 255, 0.4); }
 
-        /* RELOJES (Más compactos ahora) */
+        /* RELOJES */
         .clocks-container { display: flex; gap: 10px; margin: 30px 0 20px; justify-content: center; flex-wrap: wrap; }
         .clock-card {
             background: var(--glass-bg); border: 1px solid var(--border-color);
@@ -49,14 +50,14 @@
         .time-display { font-size: 1.1rem; font-weight: 700; color: #eee; font-variant-numeric: tabular-nums; }
         .hero .time-display { color: var(--neon-blue); }
 
-        /* SECCIÓN WIDGETS GIGANTES (Big Numbers) */
+        /* WIDGETS GIGANTES */
         .rates-container {
             width: 95%; max-width: 450px;
             display: flex; flex-direction: column; gap: 15px;
-            margin: 20px 0 40px;
+            margin: 20px 0 30px;
         }
         .rate-box {
-            height: 110px; /* Altura fija para que el número se vea grande */
+            height: 110px;
             border-radius: 18px; overflow: hidden;
             border: 1px solid var(--border-color);
             box-shadow: 0 10px 30px rgba(0,0,0,0.3);
@@ -74,41 +75,38 @@
         .btn-title { font-size: 1rem; font-weight: 600; display: block; }
         .btn-subtitle { font-size: 0.75rem; color:#aaa; font-weight:400; margin-top: 2px; display: block; }
         
-        /* Estilos específicos de botones */
+        /* Colores Específicos */
         .btn-remitly { border-color: rgba(10, 255, 10, 0.2); }
-        .btn-hn { border-color: rgba(0, 115, 207, 0.4); } /* Azul HN */
+        .btn-hn { border-color: rgba(0, 115, 207, 0.4); } 
+        .btn-news { border-color: rgba(157, 0, 255, 0.4); } /* Borde Púrpura */
         .btn-live { background: linear-gradient(90deg, #990000 0%, #D93025 100%); border: none; }
         
         .tag { font-size: 0.65rem; padding: 5px 10px; border-radius: 8px; font-weight: 800; text-transform: uppercase; }
         .tag-green { background: var(--neon-green); color: black; }
         .tag-blue { background: var(--hn-blue); color: white; }
+        .tag-purple { background: var(--news-purple); color: white; }
         .tag-white { background: white; color: black; }
         .tag-live { background: rgba(0,0,0,0.3); color: white; }
 
-        /* FOOTER SOCIAL PRO */
+        /* FOOTER SOCIAL */
         footer { 
             margin-top: auto; padding: 30px 20px; color: #666; font-size: 0.75rem; text-align: center; 
             background: linear-gradient(to top, #000, transparent); width: 100%; box-sizing: border-box;
         }
-        .social-links {
-            display: flex; justify-content: center; gap: 25px; margin-bottom: 20px;
-            padding-bottom: 20px; border-bottom: 1px solid #222;
-        }
-        .social-icon {
-            width: 24px; height: 24px; fill: #666; transition: all 0.3s ease;
-        }
+        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 20px; padding-bottom: 20px; border-bottom: 1px solid #222; }
+        .social-icon { width: 24px; height: 24px; fill: #666; transition: all 0.3s ease; }
         .social-icon:hover { fill: var(--neon-blue); transform: scale(1.2); filter: drop-shadow(0 0 8px var(--neon-blue)); }
     </style>
 </head>
 <body>
 
     <header>
-        <div class="brand-eyebrow">UtilityOS Financial</div>
+        <div class="brand-eyebrow">HONDURAS FINANCIAL HUB</div>
         <h1>MONEY <span class="h1-highlight">504</span></h1>
     </header>
 
     <div class="clocks-container">
-        <div class="clock-card"><div class="city-name">🇺🇸 USA</div><div class="time-display" id="time-us">--:--</div></div>
+        <div class="clock-card"><div class="city-name">🇺🇸 Miami</div><div class="time-display" id="time-us">--:--</div></div>
         <div class="clock-card hero"><div class="city-name">🇭🇳 Tegu</div><div class="time-display" id="time-hn">--:--</div></div>
         <div class="clock-card"><div class="city-name">🇪🇸 Madrid</div><div class="time-display" id="time-es">--:--</div></div>
     </div>
@@ -120,33 +118,18 @@
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
                 {
                 "symbol": "FX_IDC:USDHNL",
-                "width": "100%",
-                "height": "100%",
-                "locale": "es",
-                "dateRange": "1D",
-                "colorTheme": "dark",
-                "isTransparent": true,
-                "autosize": true,
-                "largeChartUrl": ""
+                "width": "100%", "height": "100%", "locale": "es", "dateRange": "1D", "colorTheme": "dark", "isTransparent": true, "autosize": true, "largeChartUrl": ""
                 }
                 </script>
             </div>
         </div>
-        
         <div class="rate-box">
             <div class="tradingview-widget-container">
                 <div class="tradingview-widget-container__widget"></div>
                 <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-mini-symbol-overview.js" async>
                 {
                 "symbol": "FX_IDC:EURHNL",
-                "width": "100%",
-                "height": "100%",
-                "locale": "es",
-                "dateRange": "1D",
-                "colorTheme": "dark",
-                "isTransparent": true,
-                "autosize": true,
-                "largeChartUrl": ""
+                "width": "100%", "height": "100%", "locale": "es", "dateRange": "1D", "colorTheme": "dark", "isTransparent": true, "autosize": true, "largeChartUrl": ""
                 }
                 </script>
             </div>
@@ -169,6 +152,11 @@
             <span class="tag tag-blue">LOCAL</span>
         </a>
 
+        <a href="LINK_A_TUS_NOTICIAS" class="link-btn btn-news">
+            <div><span class="btn-title">📰 Últimas Noticias Financieras</span><span class="btn-subtitle">Lo que afecta a tu bolsillo</span></div>
+            <span class="tag tag-purple">AL DÍA</span>
+        </a>
+
         <a href="TU_CANAL_YOUTUBE" class="link-btn btn-live">
             <div><span class="btn-title">🔴 Ver Análisis en Vivo</span></div>
             <span class="tag tag-live">AHORA</span>
@@ -183,11 +171,10 @@
             <a href="TU_INSTAGRAM_LINK"><svg class="social-icon" viewBox="0 0 24 24"><path d="M7.8,2H16.2C19.4,2 22,4.6 22,7.8V16.2A5.8,5.8 0 0,1 16.2,22H7.8C4.6,22 2,19.4 2,16.2V7.8A5.8,5.8 0 0,1 7.8,2M7.6,4A3.6,3.6 0 0,0 4,7.6V16.4C4,18.39 5.61,20 7.6,20H16.4A3.6,3.6 0 0,0 20,16.4V7.6C20,5.61 18.39,4 16.4,4H7.6M17.25,5.5A1.25,1.25 0 0,1 18.5,6.75A1.25,1.25 0 0,1 17.25,8A1.25,1.25 0 0,1 16,6.75A1.25,1.25 0 0,1 17.25,5.5M12,7A5,5 0 0,1 17,12A5,5 0 0,1 12,17A5,5 0 0,1 7,12A5,5 0 0,1 12,7M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9Z"/></svg></a>
             <a href="TU_X_LINK"><svg class="social-icon" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
         </div>
-        <p>© 2026 Money 504 Media. El Hub de la Diáspora.</p>
+        <p>© 2026 Money 504 Media. Honduras Financial Hub.</p>
     </footer>
 
     <script>
-        // Script de relojes optimizado
         function updateClocks() {
             const now = new Date();
             const opts = { hour: '2-digit', minute: '2-digit', hour12: true };
